@@ -1,18 +1,19 @@
 # Search Yelp!
 
-Mobile first Ionic demo application 
+Mobile first Ionic demo application
 
-![Main]([https://i.ibb.co/RHjx7t4/yelp-search-4de3f-firebaseapp-com-i-Phone-6-7-8.png](https://i.ibb.co/RHjx7t4/yelp-search-4de3f-firebaseapp-com-i-Phone-6-7-8.png))
+![Main](<[https://i.ibb.co/RHjx7t4/yelp-search-4de3f-firebaseapp-com-i-Phone-6-7-8.png](https://i.ibb.co/RHjx7t4/yelp-search-4de3f-firebaseapp-com-i-Phone-6-7-8.png)>)
 
 ## How to run
+
 **npm install** - installs required libraries
 **ionic serve** - starts application
 **npm run test** - run in different terminal instance to start tests in headless mode.
 
 You can find application deployed at [https://yelp-search-4de3f.firebaseapp.com/](https://yelp-search-4de3f.firebaseapp.com/)
 
-
 ## Notable technical examples
+
 - Ionic framework usage
 - Deploying on Firebase
 - CodeceptJS tests using protractor and webdriver with headless chromium testing
@@ -27,11 +28,13 @@ You can find application deployed at [https://yelp-search-4de3f.firebaseapp.com/
 - Custom pipes
 - Supports positioning and manually selected location
 - Infinite virtual scrolling
+- Lazy image load
 - Skeleton elements
 - Auto search with debouncing
 - Async pipe in components
 
 ## Remarks
+
 The application works in two modes:
 **Current location** uses location API and user will be prompted for permissions. The search hits will be shown according to your current position.
 **Custom location** allows the user to give manually location name, for example New York or NYC, and searches will show hits from that location only.
