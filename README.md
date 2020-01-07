@@ -2,7 +2,7 @@
 
 Mobile first Ionic demo application
 
-![Main](<[https://i.ibb.co/RHjx7t4/yelp-search-4de3f-firebaseapp-com-i-Phone-6-7-8.png](https://i.ibb.co/RHjx7t4/yelp-search-4de3f-firebaseapp-com-i-Phone-6-7-8.png)>)
+<img src="https://i.ibb.co/RHjx7t4/yelp-search-4de3f-firebaseapp-com-i-Phone-6-7-8.png" width="40%" />
 
 ## How to run
 
