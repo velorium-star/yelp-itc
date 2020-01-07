@@ -33,7 +33,9 @@ You can find application deployed at [https://yelp-search-4de3f.firebaseapp.com/
 ## Remarks
 
 The application works in two modes:
+
 **Current location** uses location API and user will be prompted for permissions. The search hits will be shown according to your current position.
+
 **Custom location** allows the user to give manually location name, for example New York or NYC, and searches will show hits from that location only.
 
 Selected option will be remembered next time the application is started.
