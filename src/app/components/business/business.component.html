@@ -1,0 +1,27 @@
+<ion-card size="12">
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="6" size-lg="4">
+          <div
+            [ngStyle]="{'background-image': 'url(' + data.image_url +')', 'background-position': 'center', 'height': '250px'}">
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <img style="width: 132px;" src="{{data.rating | rating}}" />
+          </div>
+          <ion-card-subtitle>{{data.display_phone || 'No phone'}}</ion-card-subtitle>
+          <ion-card-title>{{data.name}}</ion-card-title>
+          {{data.location.display_address || 'No address'}}
+          <div>
+            <span *ngFor="let pr of data.price?.split('')" style="margin-left: 5px; font-weight: bold;">$</span>
+          </div>
+          <div *ngIf="button">
+            <ion-button class="ion-margin-top">View details</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

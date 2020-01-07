@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Setup location</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #form [formGroup]="searchForm">
+    <ion-list>
+      <ion-radio-group formControlName="option">
+        <ion-item>
+          <ion-icon [color]="searchForm.value.option == 1 ? 'primary' : ''" name="locate"></ion-icon>
+          <ion-label [color]="searchForm.value.option == 1 ? 'primary' : ''"><b>Current location</b></ion-label>
+          <ion-radio [value]="1" (click)="changedSelection($event)"></ion-radio>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-icon [color]="searchForm.value.option == 2 ? 'primary' : ''" name="business"></ion-icon>
+          <ion-label [color]="searchForm.value.option == 2 ? 'primary' : ''"><b>Custom location</b></ion-label>
+          <ion-radio [value]="2" (click)="changedSelection($event)"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+    <ion-list [hidden]="searchForm.value.option != 2">
+      <ion-item lines="none">
+        <ion-label for="">Enter location</ion-label>
+        <ion-input #input formControlName="location"></ion-input>
+      </ion-item>
+      <ng-container *ngFor="let validation of validationMessages.location">
+        <ion-text color="danger">
+          <p *ngIf="searchForm.get('location').hasError(validation.type)" class="ion-padding-start ion-no-margin">
+            {{ validation.message }}
+          </p>
+        </ion-text>
+      </ng-container>
+    </ion-list>
+    <div *ngIf="searchForm.dirty">
+      <ion-button expand="block" type="submit" class="ion-padding-horizontal" (click)="update()">Update</ion-button>
+    </div>
+  </form>
+</ion-content>

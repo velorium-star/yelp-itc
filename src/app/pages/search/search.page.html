@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-progress-bar type="indeterminate" *ngIf="loading"></ion-progress-bar>
+  <ion-toolbar>
+    <ion-title>
+      Search Yelp
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="searchForm" (ngSubmit)="search(formRef)" #formRef="ngForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="search-bar">
+            <ion-searchbar formControlName="query" debounce="300" (ionClear)="clear()"
+              (ionChange)="formRef.ngSubmit.emit()">
+            </ion-searchbar>
+            <ion-button color="primary" (click)="presentModal()">
+              <ion-icon name="pin">
+              </ion-icon>
+            </ion-button>
+          </div>
+          <ng-container *ngFor="let validation of validationMessages.query">
+            <ion-text color="danger">
+              <p *ngIf="searchForm.get('query').hasError(validation.type)" class="ion-padding-start ion-no-margin">
+                {{ validation.message }}
+              </p>
+            </ion-text>
+          </ng-container>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+  <ion-card class="welcome-card" *ngIf="!searchResults.length && !searchForm.value.query.length">
+    <img src="/assets/images/yelp-logo-282.png" alt="" />
+    <ion-card-header>
+      <ion-card-subtitle>Get Started</ion-card-subtitle>
+      <ion-card-title>Welcome to Yelp</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Please, enter your query in a search bar at the top.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="!searchResults.length && showSkeleton">
+    <app-business-skeleton *ngFor="let skeleton of [1,2,3,4,5,6,7,8]"></app-business-skeleton>
+  </div>
+
+  <ion-grid [hidden]="!searchResults.length">
+    <ion-virtual-scroll [items]="searchResults">
+      <app-business button="true" (click)="viewDetails(item.id)" *virtualItem="let item;" [data]="item"></app-business>
+    </ion-virtual-scroll>
+  </ion-grid>
+
+  <ion-grid *ngIf="!searchResults.length && searchForm.value.query && !loading">
+    <h2 class="ion-margin">No results for term '{{searchForm.value.query}}'</h2>
+  </ion-grid>
+
+  <ion-infinite-scroll disabled="true" threshold="100px" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-progress-bar type="indeterminate" *ngIf="loading > 0 && !notFound"></ion-progress-bar>
+  <ion-toolbar>
+    <ion-title>Business details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!notFound">
+  <app-business-skeleton *ngIf="!(data$ | async)"></app-business-skeleton>
+  <app-business *ngIf="data$ | async as data" [data]="data"></app-business>
+
+  <ion-list lines="none" *ngIf="!(review$ | async)">
+    <ion-list-header>
+      <h2>
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </h2>
+    </ion-list-header>
+    <app-review-skeleton *ngFor="let rev of [1,2,3]"></app-review-skeleton>
+  </ion-list>
+  <ion-list lines="none" *ngIf="review$ | async as rev">
+    <ion-list-header>
+      <h2>Hot {{rev.length > 1 ? rev.length + ' reviews' : 'review'}}</h2>
+    </ion-list-header>
+    <app-review *ngFor="let r of rev" [review]="r"></app-review>
+  </ion-list>
+</ion-content>
+
+<ion-content *ngIf="notFound" class="not-found">
+  <ion-list lines="none">
+    <ion-list-header>
+      <h2>
+        Business is not found!
+      </h2>
+    </ion-list-header>
+  </ion-list>
+</ion-content>

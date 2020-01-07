@@ -1,0 +1,15 @@
+<ion-item class="ion-margin-bottom">
+  <ion-avatar slot="start">
+    <img *ngIf="review.user.image_url" src="{{review.user.image_url}}">
+  </ion-avatar>
+  <div>
+    <ion-label>
+      <h2><b>{{review.user.name}}</b></h2>
+      <div>
+        <img style="width: 132px;" src="{{review.rating | rating}}" />
+      </div>
+    </ion-label>
+    <div>"{{review.text}}"</div>
+  </div>
+
+</ion-item>
